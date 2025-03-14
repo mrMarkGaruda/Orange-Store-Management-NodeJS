@@ -1,8 +1,12 @@
 const { Pool } = require('pg');
-const { DATABASE_URL } = require('../config');
+const path = require('path');
+const dotenv = require('dotenv');
+
+const env = process.env.NODE_ENV || 'dev';
+dotenv.config({ path: path.resolve(__dirname, `../${env}.env`) });
 
 const pool = new Pool({
-  connectionString: DATABASE_URL,
+  connectionString: process.env.DATABASE_URL,
 });
 
 pool.on('error', (err) => {
