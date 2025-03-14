@@ -1,12 +1,6 @@
-const express = require('express');
-const { PORT } = require('./config');
-const orangeRoutes = require('./routes/orangeRoutes');
+const app = require('./app');
 
-const app = express();
-
-app.use(express.json());
-app.use('/oranges', orangeRoutes);
-
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'dev'} mode on port ${PORT}`);
 });
